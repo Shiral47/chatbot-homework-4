@@ -1,20 +1,23 @@
-# To-Do App: Creative Uses for Everyday Objects
+# Club Chatbot
 
-A beginner-friendly Google Colab notebook that asks for an everyday object and uses the OpenAI Responses API to suggest one unusual, practical use.
+A Google Colab notebook for a persistent, topic-scoped club chatbot. It uses LangGraph and OpenAI for responses, Supabase PostgreSQL for checkpoint persistence, and Gradio for the interface.
 
 ## Repository structure
 
-- to-do app.ipynb — the runnable Colab notebook.
-- README.md — project overview and setup instructions.
-- prompt.md — project requirements and technical specifications.
+- `club-chatbot.ipynb` — the complete Google Colab notebook.
+- `README.md` — setup and usage instructions.
+- `prompt.md` — project requirements and technical specifications.
+- `agent.md` — repository instructions for future code changes.
 
 ## Open and run in Google Colab
 
-1. Clone this repository, or open its GitHub page.
-2. In Google Colab, choose File → Open notebook → GitHub and paste the repository URL, or use this direct link after publishing: https://colab.research.google.com/github/Shiral47/chatbot-homework-4/blob/main/to-do%20app.ipynb.
-3. Run the notebook cells from top to bottom.
-4. When prompted, enter your OpenAI API key privately, then enter an everyday object.
+1. Open the notebook from GitHub in Colab: [Open club-chatbot.ipynb](https://colab.research.google.com/github/Shiral47/chatbot-homework-4/blob/main/club-chatbot.ipynb).
+2. Run the dependency installation cell. It installs Gradio 5.50.0 for a consistent UI version.
+3. After installation completes, choose **Runtime → Restart session**, then continue with the next section, **Load secrets and initialize the chat model**.
+4. Add these two values in Colab's **Secrets** panel and enable notebook access:
+   - `OPENAI_API_KEY` — your OpenAI API key.
+   - `SUPABASE_DB_URL` — the PostgreSQL connection string from your Supabase project.
+5. For Colab's IPv4-only network, use the exact **Session pooler** URL from **Supabase Dashboard → Connect → Session pooler** (port 5432). Do not use a direct `db.*.supabase.co` URL if it resolves to IPv6.
+6. Run the remaining cells in order. The notebook includes a persistence test cell and starts the Gradio app with a share link.
 
-An OpenAI API key is required at runtime. The notebook uses getpass to hide the key while entering it. Keep the key out of notebook source, saved outputs, commits, and GitHub repositories. If a key is ever exposed, revoke it and create a replacement.
-
-The notebook uses the gpt-6-luna model through client.responses.create; API access and model availability depend on your OpenAI account.
+Keep both credentials in Colab Secrets; never paste them into notebook code, outputs, commits, or GitHub. Anyone who has the Gradio share link can use the running app, its OpenAI API quota, and its Supabase-backed conversations, so share the link only with trusted people.
